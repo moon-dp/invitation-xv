@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-
+// --- COMPONENTE SVG ---
 const ButterflySVG = ({ className }) => (
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} width="30" height="30">
     <path d="M12 20s-1-3-1-5 1-3 1-3 1 1 1 3-1 5-1 5z" fill="currentColor" />
@@ -11,7 +11,7 @@ const ButterflySVG = ({ className }) => (
   </svg>
 );
 
-
+// --- COMPONENTE DE CAÍDA ---
 const FallingButterfly = ({ delay }) => {
   const [startX, setStartX] = useState(null);
   const [randomDuration, setRandomDuration] = useState(10);
@@ -38,7 +38,7 @@ const FallingButterfly = ({ delay }) => {
   );
 };
 
-
+// --- COMPONENTE PRINCIPAL ---
 export default function InvitacionXV() {
   const [butterflies, setButterflies] = useState([]);
   useEffect(() => {
@@ -46,9 +46,9 @@ export default function InvitacionXV() {
   }, []);
 
   const nroTelefono = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5492262622237";
-  const whatsappLink = `https://wa.me/${nroTelefono}?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Mile%20🦋`;
+  const whatsappLink = `https://wa.me/${nroTelefono}?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Mile%20`;
 
-
+  // Nuevo: Separador elegante de puntitos
   const DelicateDivider = () => (
     <div className="flex items-center justify-center gap-3 my-6 opacity-60">
       <div className="w-1.5 h-1.5 rounded-full bg-blue-400/60 scale-75" />
@@ -66,14 +66,14 @@ export default function InvitacionXV() {
         body { margin: 0; background: #e0f2fe; overflow-x: hidden; }
       `}} />
 
-
+      {/* Fondo con brillo central */}
       <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_#e0f2fe_0%,_#7dd3fc_70%,_#38bdf8_100%)] opacity-80" />
       <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] z-0" />
 
-
+      {/* Lluvia de Mariposas */}
       {butterflies.map((delay, index) => <FallingButterfly key={index} delay={delay} />)}
 
-  
+      {/* --- TARJETA DE CRISTAL --- */}
       <motion.div 
         initial={{ opacity: 0, y: 40, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -84,7 +84,7 @@ export default function InvitacionXV() {
                    shadow-[0_0_40px_-10px_rgba(147,197,253,0.5),_inset_0_0_20px_rgba(255,255,255,0.7)]
                    ring-4 ring-white/20"
       >
-
+        {/* Adorno superior flotante */}
         <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-blue-500 bg-white/90 backdrop-blur p-3 rounded-full shadow-lg ring-2 ring-white">
           <ButterflySVG className="w-7 h-7 drop-shadow-sm" />
         </div>
@@ -128,7 +128,7 @@ export default function InvitacionXV() {
           </motion.a>
         </footer>
 
-
+        {/* Detalle de fondo sutil */}
         <div className="absolute bottom-5 right-5 opacity-5 pointer-events-none mix-blend-overlay">
           <ButterflySVG className="w-32 h-32 -rotate-12" />
         </div>
