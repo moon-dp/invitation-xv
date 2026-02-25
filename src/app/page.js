@@ -55,7 +55,7 @@ export default function InvitacionXV() {
   }, []);
 
 
-  const nroTelefono = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+  const nroTelefono = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5492262622237"
   const whatsappLink = `https://wa.me/${nroTelefono}?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Mile%20`;
 
   return (
