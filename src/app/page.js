@@ -14,11 +14,10 @@ const ALIAS        = "MILUFEST"; // Cambiá esto
 const PLAYLIST_URL = "#";          // Reemplazá con Spotify / Google Form
 const AUDIO_SRC    = "/Ariana Grande - One Last Time.mp3";
 const FOTOS        = [
-  "/fotos/foto1.jpg",
-  "/fotos/foto2.jpg",
-  "/fotos/foto3.jpg",
-  "/fotos/foto4.jpg",
-  "/fotos/foto5.jpg",
+  "/fotos/WhatsApp Image 2026-05-10 at 6.51.24 PM.jpeg",
+  "/fotos/WhatsApp Image 2026-05-10 at 6.51.57 PM.jpeg",
+  "/fotos/WhatsApp Image 2026-05-10 at 6.51.58 PM.jpeg",
+  // Agregá más fotos acá con el mismo formato
 ];
 
 function ButterflyIcon({ size = 24 }) {
