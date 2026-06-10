@@ -480,9 +480,9 @@ function Polaroid({ src }) {
 // ─── Sobre (envelope) ─────────────────────────────────────────
 function Envelope({ flapOpen }) {
   const W = 270, H = 190;
-  const pink     = "oklch(0.68 0.13 245)";
-  const pinkMid  = "oklch(0.62 0.13 245)";
-  const pinkDark = "oklch(0.57 0.13 245)";
+  const azul     = "oklch(0.68 0.13 245)";
+  const azulMid  = "oklch(0.62 0.13 245)";
+  const azulDark = "oklch(0.57 0.13 245)";
 
   return (
     <div style={{
@@ -494,36 +494,40 @@ function Envelope({ flapOpen }) {
         viewBox={`0 0 ${W} ${H}`}
         style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible" }}
       >
-        <rect x="0" y="0" width={W} height={H} rx="10" fill={pink} />
-        {/* pliegues laterales */}
-        <polygon points={`0,0 0,${H} ${W/2},${H*0.56}`}   fill={pinkMid} />
-        <polygon points={`${W},0 ${W},${H} ${W/2},${H*0.56}`} fill={pinkMid} />
-        {/* pliegue inferior */}
-        <polygon points={`0,${H} ${W/2},${H*0.56} ${W},${H}`} fill={pinkDark} />
+        <rect x="0" y="0" width={W} height={H} rx="10" fill={azul} />
+        <polygon points={`0,0 0,${H} ${W/2},${H*0.56}`}             fill={azulMid} />
+        <polygon points={`${W},0 ${W},${H} ${W/2},${H*0.56}`}       fill={azulMid} />
+        <polygon points={`0,${H} ${W/2},${H*0.56} ${W},${H}`}       fill={azulDark} />
       </svg>
 
-      {/* solapeta animada */}
-      <motion.div
-        style={{
-          position: "absolute", top: 0, left: 0,
-          width: W, height: H * 0.58,
-          clipPath: "polygon(0% 0%, 100% 0%, 50% 100%)",
-          background: pinkDark,
-          transformOrigin: "50% 0%",
-        }}
-        animate={{ rotateX: flapOpen ? -172 : 0 }}
-        transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
-      />
+      {/* wrapper con perspectiva para el 3D del flap */}
+      <div style={{
+        position: "absolute", inset: 0,
+        perspective: "700px",
+        perspectiveOrigin: "50% 0%",
+      }}>
+        <motion.div
+          style={{
+            position: "absolute", top: 0, left: 0,
+            width: "100%", height: "58%",
+            clipPath: "polygon(0% 0%, 100% 0%, 50% 100%)",
+            background: azulDark,
+            transformOrigin: "50% 0%",
+          }}
+          animate={{ rotateX: flapOpen ? -158 : 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        />
+      </div>
 
       {/* lacre */}
       <div style={{
         position: "absolute",
         bottom: 28, left: "50%", transform: "translateX(-50%)",
         width: 48, height: 48, borderRadius: "50%",
-        background: "oklch(0.58 0.02 280)",
+        background: "oklch(0.55 0.03 280)",
         display: "flex", alignItems: "center", justifyContent: "center",
-        boxShadow: "0 3px 14px oklch(0 0 0 / 0.42)",
-        zIndex: 3,
+        boxShadow: "0 3px 14px oklch(0 0 0 / 0.45)",
+        zIndex: 4,
       }}>
         <svg width="22" height="22" viewBox="0 0 24 24" fill="oklch(0.88 0 0)">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -535,18 +539,24 @@ function Envelope({ flapOpen }) {
 
 // ─── Pantalla de sobre ─────────────────────────────────────────
 function SobreIntro({ onOpen }) {
-  const [fase, setFase] = useState("idle"); // idle → abriendo → expandiendo
+  const [flapOpen, setFlapOpen] = useState(false);
+  const [saliendo, setSaliendo]  = useState(false);
 
   const handleClick = () => {
-    if (fase !== "idle") return;
-    setFase("abriendo");
-    setTimeout(() => setFase("expandiendo"), 680);
-    setTimeout(() => onOpen(),               1080);
+    if (flapOpen) return;
+
+    // 1. Abre el flap
+    setFlapOpen(true);
+
+    // 2. Después de que el flap abre (600ms), empieza el fade-out
+    setTimeout(() => setSaliendo(true), 620);
+
+    // 3. Después del fade (620 + 520 = 1140ms), monta la invitación
+    setTimeout(() => onOpen(), 1180);
   };
 
   return (
     <motion.div
-      key="sobre"
       style={{
         position: "fixed", inset: 0, zIndex: 200,
         background: "oklch(0.12 0.025 280)",
@@ -556,27 +566,10 @@ function SobreIntro({ onOpen }) {
         padding: "clamp(32px, 6vw, 56px) 24px",
         overflow: "hidden",
       }}
-      exit={{ opacity: 0, transition: { duration: 0.45, ease: "easeIn" } }}
+      animate={{ opacity: saliendo ? 0 : 1 }}
+      transition={{ opacity: { duration: 0.52, ease: "easeIn" } }}
     >
       <FondoMariposas />
-
-      {/* Destello rosa al expandir */}
-      <AnimatePresence>
-        {fase === "expandiendo" && (
-          <motion.div
-            initial={{ scale: 0, opacity: 0.9 }}
-            animate={{ scale: 50, opacity: 0 }}
-            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              position: "absolute",
-              width: 270, height: 190,
-              borderRadius: "50%",
-              background: "oklch(0.68 0.13 245)",
-              pointerEvents: "none", zIndex: 10,
-            }}
-          />
-        )}
-      </AnimatePresence>
 
       {/* Título */}
       <div style={{ textAlign: "center", position: "relative", zIndex: 5 }}>
@@ -600,18 +593,26 @@ function SobreIntro({ onOpen }) {
       {/* Sobre */}
       <motion.div
         onClick={handleClick}
-        style={{ cursor: "pointer", position: "relative", zIndex: 5 }}
-        whileHover={{ scale: 1.03, transition: { duration: 0.18 } }}
-        whileTap={{ scale: 0.96 }}
+        style={{ cursor: flapOpen ? "default" : "pointer", position: "relative", zIndex: 5 }}
+        whileHover={!flapOpen ? { scale: 1.03 } : {}}
+        whileTap={!flapOpen ? { scale: 0.97 } : {}}
+        animate={flapOpen ? { y: -10 } : { y: 0 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
-        <Envelope flapOpen={fase !== "idle"} />
+        <Envelope flapOpen={flapOpen} />
       </motion.div>
 
       {/* Texto pulsante */}
       <motion.p
         className="ral"
-        animate={{ opacity: [0.38, 0.80, 0.38] }}
-        transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+        animate={flapOpen
+          ? { opacity: 0 }
+          : { opacity: [0.35, 0.78, 0.35] }
+        }
+        transition={flapOpen
+          ? { duration: 0.25 }
+          : { duration: 2.4, repeat: Infinity, ease: "easeInOut" }
+        }
         style={{
           fontSize: "clamp(0.62rem, 2.5vw, 0.75rem)",
           letterSpacing: "0.22em", textTransform: "uppercase",
@@ -664,11 +665,9 @@ export default function InvitacionXV() {
       `}} />
 
       {/* ── Pantalla de sobre ── */}
-      <AnimatePresence>
-        {pantalla === "sobre" && (
-          <SobreIntro onOpen={() => setPantalla("invitacion")} />
-        )}
-      </AnimatePresence>
+      {pantalla === "sobre" && (
+        <SobreIntro onOpen={() => setPantalla("invitacion")} />
+      )}
 
       {/* ── Invitación (se monta al abrir el sobre) ── */}
       {pantalla === "invitacion" && (
