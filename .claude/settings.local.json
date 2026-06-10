@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./mvnw -q -DskipTests compile)",
+      "PowerShell($javaCandidates = @\\('C:\\\\Program Files\\\\Eclipse Adoptium', 'C:\\\\Program Files\\\\Java', 'C:\\\\Program Files\\\\Microsoft', 'C:\\\\Program Files \\(x86\\)\\\\Java'\\); foreach \\($p in $javaCandidates\\) { if \\(Test-Path $p\\) { Get-ChildItem $p -Directory | ForEach-Object { Write-Output $_.FullName } } })",
+      "PowerShell($env:JAVA_HOME = 'C:\\\\Program Files\\\\Java\\\\jdk-22'; $env:Path = \"$env:JAVA_HOME\\\\bin;$env:Path\"; java -version 2>&1; Write-Output '---'; cd 'C:\\\\Users\\\\nicol\\\\Documents\\\\GitHub\\\\SaaS_Padel\\\\demo'; .\\\\mvnw.cmd -q -DskipTests compile 2>&1 | Select-Object -Last 100)",
+      "Bash(find ~/.m2/repository/com/mercadopago -name \"*.jar\" 2>/dev/null | head -5)",
+      "Read(//c/tmp/**)",
+      "Bash(unzip -p /c/Users/nicol/.m2/repository/com/mercadopago/sdk-java/2.9.2/sdk-java-2.9.2.jar)",
+      "Bash(unzip -l /c/Users/nicol/.m2/repository/com/mercadopago/sdk-java/2.9.2/sdk-java-2.9.2.jar)",
+      "Bash(cd /c/Users/nicol/Documents/GitHub/SaaS_Padel/frontend && ls src/)",
+      "PowerShell($env:JAVA_HOME = 'C:\\\\Program Files\\\\Java\\\\jdk-22'; $env:Path = \"$env:JAVA_HOME\\\\bin;$env:Path\"; cd 'C:\\\\Users\\\\nicol\\\\Documents\\\\GitHub\\\\SaaS_Padel\\\\demo'; $output = .\\\\mvnw.cmd -DskipTests clean compile 2>&1; $errs = $output | Select-String -Pattern 'ERROR|warning:' -CaseSensitive:$false; if \\($errs\\) { $errs | Select-Object -Last 30 } else { Write-Output 'No warnings/errors' }; Write-Output \\('BUILD: ' + \\($output | Select-String -Pattern 'BUILD SUCCESS|BUILD FAILURE'\\).Line\\); Write-Output \"EXIT=$LASTEXITCODE\")"
+    ]
+  }
+}

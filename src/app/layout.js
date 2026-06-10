@@ -1,11 +1,11 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "XV Años · Tiziana",
+  title: "XV Años · Milena",
   description: "Te invito a celebrar mis quince años",
   robots: { index: false, follow: false },
   openGraph: {
-    title: "XV Años · Tiziana",
+    title: "XV Años · Milena",
     description: "Te invito a celebrar mis quince años",
     type: "website",
   },

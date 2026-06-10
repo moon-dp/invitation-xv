@@ -10,9 +10,9 @@ const MES          = "agosto";
 const DIA_SEM      = "SÁBADO";
 const ANIO         = "2026";
 const MENSAJE      = "Porque esta noche es muy importante para mí, quiero compartirla con las personas que llevo en el corazón. Porque sos una de ellas, quisiera que estés presente en una de las noches más inolvidables de mi vida.";
-const ALIAS        = "Tizi.simone"; // Cambiá esto
+const ALIAS        = "MILUFEST"; // Cambiá esto
 const PLAYLIST_URL = "#";          // Reemplazá con Spotify / Google Form
-const AUDIO_SRC    = "/cancion.mp3";
+const AUDIO_SRC    = "/Ariana Grande - One Last Time.mp3";
 const FOTOS        = [
   "/fotos/foto1.jpg",
   "/fotos/foto2.jpg",
@@ -20,17 +20,7 @@ const FOTOS        = [
   "/fotos/foto4.jpg",
   "/fotos/foto5.jpg",
 ];
-// ──────────────────────────────────────────────────────────────
 
-// ─── Paleta OKLCH ─────────────────────────────────────────────
-// bg:      oklch(0.12 0.025 280)  ≈ #18151f
-// surface: oklch(0.17 0.020 280)  ≈ #211d2d
-// pink:    oklch(0.73 0.10  350)  ≈ #e8a4b5
-// bright:  oklch(0.80 0.09  350)  ≈ #f0b8cb
-// ink:     oklch(0.97 0.000 0)    ≈ #f8f8f8
-// muted:   oklch(0.62 0.000 0)    ≈ rgba(255,255,255,0.60)
-
-// ─── Mariposa SVG ─────────────────────────────────────────────
 function ButterflyIcon({ size = 24 }) {
   return (
     <svg
@@ -684,6 +674,25 @@ export default function InvitacionXV() {
               </div>
             </div>
           </motion.div>
+
+          {/* Dress Code */}
+          <motion.div
+            style={{ position: "relative", zIndex: 10, display: "flex", alignItems: "center", gap: 14 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <div style={{ height: 1, width: 32, background: "oklch(0.97 0 0 / 0.20)" }} />
+            <p className="ral" style={{
+              fontSize: "0.68rem", letterSpacing: "0.30em",
+              color: "oklch(0.97 0 0 / 0.48)", textTransform: "uppercase", fontWeight: 500,
+            }}>
+              Dress Code &nbsp;·&nbsp; <span style={{ color: "oklch(0.80 0.09 350 / 0.80)", fontWeight: 600 }}>Elegant Sport</span>
+            </p>
+            <div style={{ height: 1, width: 32, background: "oklch(0.97 0 0 / 0.20)" }} />
+          </motion.div>
+
         </section>
 
         {/* ══════════════════════════════════════
