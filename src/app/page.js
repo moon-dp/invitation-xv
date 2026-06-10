@@ -687,8 +687,9 @@ export default function InvitacionXV() {
         <section style={{
           position: "relative", minHeight: "100svh",
           display: "flex", flexDirection: "column",
-          alignItems: "center", justifyContent: "space-between",
-          padding: "clamp(40px, 8vw, 72px) 24px clamp(32px, 6vw, 56px)",
+          alignItems: "center", justifyContent: "center",
+          gap: "clamp(20px, 5svh, 44px)",
+          padding: "clamp(40px, 8vw, 72px) 24px clamp(36px, 6vw, 56px)",
           overflow: "hidden",
         }}>
           <FondoMariposas />
@@ -865,20 +866,32 @@ export default function InvitacionXV() {
 
           {/* Dress Code */}
           <motion.div
-            style={{ position: "relative", zIndex: 10, display: "flex", alignItems: "center", gap: 14 }}
+            style={{
+              position: "relative", zIndex: 10,
+              display: "flex", flexDirection: "column", alignItems: "center", gap: 5,
+            }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.35 }}
           >
-            <div style={{ height: 1, width: 32, background: "oklch(0.97 0 0 / 0.20)" }} />
             <p className="ral" style={{
-              fontSize: "0.68rem", letterSpacing: "0.30em",
-              color: "oklch(0.97 0 0 / 0.48)", textTransform: "uppercase", fontWeight: 500,
+              fontSize: "0.62rem", letterSpacing: "0.22em",
+              color: "oklch(0.97 0 0 / 0.40)", textTransform: "uppercase", fontWeight: 500,
             }}>
-              Dress Code &nbsp;·&nbsp; <span style={{ color: "oklch(0.80 0.10 215 / 0.80)", fontWeight: 600 }}>Elegant Sport</span>
+              Dress Code
             </p>
-            <div style={{ height: 1, width: 32, background: "oklch(0.97 0 0 / 0.20)" }} />
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <div style={{ height: 1, width: 24, background: "oklch(0.97 0 0 / 0.18)" }} />
+              <p className="ral" style={{
+                fontSize: "0.78rem", letterSpacing: "0.18em",
+                color: "oklch(0.80 0.10 215)", fontWeight: 700,
+                textTransform: "uppercase",
+              }}>
+                Elegant Sport
+              </p>
+              <div style={{ height: 1, width: 24, background: "oklch(0.97 0 0 / 0.18)" }} />
+            </div>
           </motion.div>
 
         </section>
