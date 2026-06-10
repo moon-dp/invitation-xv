@@ -971,9 +971,10 @@ export default function InvitacionXV() {
 
         {/* Botón WhatsApp */}
         <div style={{
-          display: "flex", justifyContent: "center",
+          display: "flex", flexDirection: "column", alignItems: "center",
           padding: "clamp(28px, 6vw, 48px) 24px 0",
           position: "relative", zIndex: 10,
+          gap: 0,
         }}>
           <motion.a
             href={`https://wa.me/${WA_NUMERO}?text=${WA_MENSAJE}`}
