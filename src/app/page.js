@@ -472,6 +472,154 @@ function Polaroid({ src }) {
   );
 }
 
+// ─── Sobre (envelope) ─────────────────────────────────────────
+function Envelope({ flapOpen }) {
+  const W = 270, H = 190;
+  const pink     = "oklch(0.78 0.10 15)";
+  const pinkMid  = "oklch(0.74 0.10 15)";
+  const pinkDark = "oklch(0.70 0.10 15)";
+
+  return (
+    <div style={{
+      position: "relative", width: W, height: H,
+      filter: "drop-shadow(0 14px 36px oklch(0.78 0.10 15 / 0.40))",
+    }}>
+      {/* cuerpo estático */}
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible" }}
+      >
+        <rect x="0" y="0" width={W} height={H} rx="10" fill={pink} />
+        {/* pliegues laterales */}
+        <polygon points={`0,0 0,${H} ${W/2},${H*0.56}`}   fill={pinkMid} />
+        <polygon points={`${W},0 ${W},${H} ${W/2},${H*0.56}`} fill={pinkMid} />
+        {/* pliegue inferior */}
+        <polygon points={`0,${H} ${W/2},${H*0.56} ${W},${H}`} fill={pinkDark} />
+      </svg>
+
+      {/* solapeta animada */}
+      <motion.div
+        style={{
+          position: "absolute", top: 0, left: 0,
+          width: W, height: H * 0.58,
+          clipPath: "polygon(0% 0%, 100% 0%, 50% 100%)",
+          background: pinkDark,
+          transformOrigin: "50% 0%",
+        }}
+        animate={{ rotateX: flapOpen ? -172 : 0 }}
+        transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+      />
+
+      {/* lacre */}
+      <div style={{
+        position: "absolute",
+        bottom: 28, left: "50%", transform: "translateX(-50%)",
+        width: 48, height: 48, borderRadius: "50%",
+        background: "oklch(0.58 0.02 280)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        boxShadow: "0 3px 14px oklch(0 0 0 / 0.42)",
+        zIndex: 3,
+      }}>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="oklch(0.88 0 0)">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+// ─── Pantalla de sobre ─────────────────────────────────────────
+function SobreIntro({ onOpen }) {
+  const [fase, setFase] = useState("idle"); // idle → abriendo → expandiendo
+
+  const handleClick = () => {
+    if (fase !== "idle") return;
+    setFase("abriendo");
+    setTimeout(() => setFase("expandiendo"), 680);
+    setTimeout(() => onOpen(),               1080);
+  };
+
+  return (
+    <motion.div
+      key="sobre"
+      style={{
+        position: "fixed", inset: 0, zIndex: 200,
+        background: "oklch(0.12 0.025 280)",
+        display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center",
+        gap: "clamp(20px, 5vw, 34px)",
+        padding: "clamp(32px, 6vw, 56px) 24px",
+        overflow: "hidden",
+      }}
+      exit={{ opacity: 0, transition: { duration: 0.45, ease: "easeIn" } }}
+    >
+      <FondoMariposas />
+
+      {/* Destello rosa al expandir */}
+      <AnimatePresence>
+        {fase === "expandiendo" && (
+          <motion.div
+            initial={{ scale: 0, opacity: 0.9 }}
+            animate={{ scale: 50, opacity: 0 }}
+            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              position: "absolute",
+              width: 270, height: 190,
+              borderRadius: "50%",
+              background: "oklch(0.78 0.10 15)",
+              pointerEvents: "none", zIndex: 10,
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Título */}
+      <div style={{ textAlign: "center", position: "relative", zIndex: 5 }}>
+        <h1 className="gv" style={{
+          fontSize: "clamp(3.8rem, 16vw, 6.5rem)",
+          color: "oklch(0.97 0 0)",
+          textShadow: "0 2px 24px oklch(0.73 0.10 350 / 0.30)",
+          lineHeight: 1.05,
+        }}>
+          {NOMBRE}
+        </h1>
+        <p className="ral" style={{
+          fontSize: "clamp(0.65rem, 2.5vw, 0.82rem)",
+          letterSpacing: "0.42em", color: "oklch(0.97 0 0 / 0.55)",
+          textTransform: "uppercase", fontWeight: 400, marginTop: 4,
+        }}>
+          MIS QUINCE AÑOS
+        </p>
+      </div>
+
+      {/* Sobre */}
+      <motion.div
+        onClick={handleClick}
+        style={{ cursor: "pointer", position: "relative", zIndex: 5 }}
+        whileHover={{ scale: 1.03, transition: { duration: 0.18 } }}
+        whileTap={{ scale: 0.96 }}
+      >
+        <Envelope flapOpen={fase !== "idle"} />
+      </motion.div>
+
+      {/* Texto pulsante */}
+      <motion.p
+        className="ral"
+        animate={{ opacity: [0.38, 0.80, 0.38] }}
+        transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+        style={{
+          fontSize: "clamp(0.62rem, 2.5vw, 0.75rem)",
+          letterSpacing: "0.22em", textTransform: "uppercase",
+          color: "oklch(0.97 0 0 / 0.48)",
+          position: "relative", zIndex: 5,
+        }}
+      >
+        Presioná el sobre para abrirlo
+      </motion.p>
+    </motion.div>
+  );
+}
+
 // ─── Transición suave entre secciones oscuras ──────────────────
 function FadeDown({ from = "oklch(0.12 0.025 280)", to = "oklch(0.12 0.025 280)" }) {
   return (
@@ -488,6 +636,7 @@ function FadeDown({ from = "oklch(0.12 0.025 280)", to = "oklch(0.12 0.025 280)"
 // ─── Página principal ──────────────────────────────────────────
 export default function InvitacionXV() {
   const BG = "oklch(0.12 0.025 280)";
+  const [pantalla, setPantalla] = useState("sobre"); // "sobre" | "invitacion"
 
   return (
     <>
@@ -509,8 +658,22 @@ export default function InvitacionXV() {
         }
       `}} />
 
-      {/* Mariposas flotantes en toda la página */}
-      <MariposasFijo />
+      {/* ── Pantalla de sobre ── */}
+      <AnimatePresence>
+        {pantalla === "sobre" && (
+          <SobreIntro onOpen={() => setPantalla("invitacion")} />
+        )}
+      </AnimatePresence>
+
+      {/* ── Invitación (se monta al abrir el sobre) ── */}
+      {pantalla === "invitacion" && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
+          {/* Mariposas flotantes en toda la página */}
+          <MariposasFijo />
 
       <main className="ral" style={{ background: BG, color: "oklch(0.97 0 0)", minHeight: "100vh" }}>
 
@@ -872,6 +1035,8 @@ export default function InvitacionXV() {
         </section>
 
       </main>
+        </motion.div>
+      )}
     </>
   );
 }
