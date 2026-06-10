@@ -10,9 +10,14 @@ const MES          = "agosto";
 const DIA_SEM      = "SÁBADO";
 const ANIO         = "2026";
 const MENSAJE      = "Porque esta noche es muy importante para mí, quiero compartirla con las personas que llevo en el corazón. Porque sos una de ellas, quisiera que estés presente en una de las noches más inolvidables de mi vida.";
+const LUGAR        = "SOUTH (ex Sotavento)";
+const DIRECCION    = "Av. 2 y Pinolandia";
+const HORA         = "21:00 hs";
 const ALIAS        = "MILUFEST"; // Cambiá esto
 const PLAYLIST_URL = "#";          // Reemplazá con Spotify / Google Form
 const AUDIO_SRC    = "/Ariana Grande - One Last Time.mp3";
+const WA_NUMERO    = "5492262622237"; // Cambiá por el número real
+const WA_MENSAJE   = encodeURIComponent("¡Hola! Confirmo mi asistencia a los XV de Milena 🦋");
 const FOTOS        = [
   "/fotos/WhatsApp Image 2026-05-10 at 6.51.24 PM.jpeg",
   "/fotos/WhatsApp Image 2026-05-10 at 6.51.57 PM.jpeg",
@@ -88,7 +93,7 @@ function FondoMariposas() {
           style={{
             top:  `${b.top}%`,
             left: `${b.left}%`,
-            color: b.pink ? "oklch(0.73 0.10 350 / 0.45)" : "rgba(255,255,255,0.22)",
+            color: b.pink ? "oklch(0.72 0.13 215 / 0.45)" : "rgba(255,255,255,0.22)",
           }}
           animate={{ opacity: [0.15, 0.75, 0.15], scale: [0.85, 1.1, 0.85], rotate: [0, 6, -6, 0] }}
           transition={{ duration: b.dur, repeat: Infinity, delay: b.delay }}
@@ -112,7 +117,7 @@ function MariposasFijo() {
         delay:    Math.random() * 15,
         size:     14 + Math.random() * 14,
         color:    i % 3 === 0
-          ? "oklch(0.73 0.10 350 / 0.50)"
+          ? "oklch(0.72 0.13 215 / 0.50)"
           : "rgba(255,255,255,0.20)",
       }))
     );
@@ -268,7 +273,7 @@ function MusicPlayer() {
             width: 52, height: 52, borderRadius: "50%", background: "white",
             border: "none", cursor: "pointer", display: "flex",
             alignItems: "center", justifyContent: "center",
-            boxShadow: "0 4px 24px oklch(0.73 0.10 350 / 0.30)",
+            boxShadow: "0 4px 24px oklch(0.72 0.13 215 / 0.30)",
           }}
         >
           {playing
@@ -329,7 +334,7 @@ function Contador() {
             <div style={{
               fontSize: "clamp(2.2rem, 12vw, 4rem)",
               fontWeight: 700, lineHeight: 1,
-              color: pink ? "oklch(0.73 0.10 350)" : "oklch(0.18 0 0)",
+              color: pink ? "oklch(0.72 0.13 215)" : "oklch(0.18 0 0)",
               fontFamily: "inherit",
             }}>
               {String(val).padStart(2, "0")}
@@ -437,7 +442,7 @@ function Carrusel() {
               width:  i === cur ? 22 : 8,
               height: 8,
               borderRadius: 99,
-              background: i === cur ? "oklch(0.73 0.10 350)" : "oklch(0.97 0 0 / 0.30)",
+              background: i === cur ? "oklch(0.72 0.13 215)" : "oklch(0.97 0 0 / 0.30)",
               border: "none", cursor: "pointer",
               transition: "all 0.35s cubic-bezier(0.25, 1, 0.5, 1)",
             }}
@@ -475,14 +480,14 @@ function Polaroid({ src }) {
 // ─── Sobre (envelope) ─────────────────────────────────────────
 function Envelope({ flapOpen }) {
   const W = 270, H = 190;
-  const pink     = "oklch(0.78 0.10 15)";
-  const pinkMid  = "oklch(0.74 0.10 15)";
-  const pinkDark = "oklch(0.70 0.10 15)";
+  const pink     = "oklch(0.68 0.13 245)";
+  const pinkMid  = "oklch(0.62 0.13 245)";
+  const pinkDark = "oklch(0.57 0.13 245)";
 
   return (
     <div style={{
       position: "relative", width: W, height: H,
-      filter: "drop-shadow(0 14px 36px oklch(0.78 0.10 15 / 0.40))",
+      filter: "drop-shadow(0 14px 36px oklch(0.68 0.13 245 / 0.40))",
     }}>
       {/* cuerpo estático */}
       <svg
@@ -566,7 +571,7 @@ function SobreIntro({ onOpen }) {
               position: "absolute",
               width: 270, height: 190,
               borderRadius: "50%",
-              background: "oklch(0.78 0.10 15)",
+              background: "oklch(0.68 0.13 245)",
               pointerEvents: "none", zIndex: 10,
             }}
           />
@@ -578,7 +583,7 @@ function SobreIntro({ onOpen }) {
         <h1 className="gv" style={{
           fontSize: "clamp(3.8rem, 16vw, 6.5rem)",
           color: "oklch(0.97 0 0)",
-          textShadow: "0 2px 24px oklch(0.73 0.10 350 / 0.30)",
+          textShadow: "0 2px 24px oklch(0.72 0.13 215 / 0.30)",
           lineHeight: 1.05,
         }}>
           {NOMBRE}
@@ -709,7 +714,7 @@ export default function InvitacionXV() {
                 fontSize: "clamp(5rem, 22vw, 7.5rem)",
                 lineHeight: 1.05, marginTop: 4,
                 color: "oklch(0.97 0 0)",
-                textShadow: "0 2px 24px oklch(0.73 0.10 350 / 0.30)",
+                textShadow: "0 2px 24px oklch(0.72 0.13 215 / 0.30)",
               }}
             >
               {NOMBRE}
@@ -733,10 +738,10 @@ export default function InvitacionXV() {
               <span>MIS</span>
               <span className="ral" style={{
                 fontSize: "clamp(4rem, 16vw, 6rem)", lineHeight: 1,
-                color: "oklch(0.80 0.09 350)",
+                color: "oklch(0.80 0.10 215)",
                 fontWeight: 900, fontStyle: "italic",
                 letterSpacing: "-0.02em",
-                textShadow: "0 3px 0 oklch(0.55 0.08 350), 0 6px 20px oklch(0.73 0.10 350 / 0.35)",
+                textShadow: "0 3px 0 oklch(0.55 0.08 215), 0 6px 20px oklch(0.72 0.13 215 / 0.35)",
               }}>
                 15
               </span>
@@ -821,7 +826,7 @@ export default function InvitacionXV() {
               {/* Número */}
               <span className="ral" style={{
                 fontSize: "clamp(5.5rem, 22vw, 7.5rem)", lineHeight: 1,
-                color: "oklch(0.80 0.09 350)", fontWeight: 300,
+                color: "oklch(0.80 0.10 215)", fontWeight: 300,
               }}>{DIA_NUM}</span>
 
               {/* AÑO */}
@@ -837,20 +842,42 @@ export default function InvitacionXV() {
             </div>
           </motion.div>
 
+          {/* Lugar y hora */}
+          <motion.div
+            style={{ position: "relative", zIndex: 10, textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.25 }}
+          >
+            <p className="ral" style={{
+              fontSize: "clamp(0.9rem, 3.5vw, 1.05rem)", fontWeight: 700,
+              color: "oklch(0.97 0 0)", letterSpacing: "0.06em",
+            }}>{LUGAR}</p>
+            <p className="ral" style={{
+              fontSize: "clamp(0.72rem, 2.8vw, 0.82rem)",
+              color: "oklch(0.97 0 0 / 0.55)", letterSpacing: "0.18em", textTransform: "uppercase",
+            }}>{DIRECCION}</p>
+            <p className="ral" style={{
+              fontSize: "clamp(0.85rem, 3vw, 1rem)", fontWeight: 600,
+              color: "oklch(0.80 0.10 215)", letterSpacing: "0.12em", marginTop: 4,
+            }}>{HORA}</p>
+          </motion.div>
+
           {/* Dress Code */}
           <motion.div
             style={{ position: "relative", zIndex: 10, display: "flex", alignItems: "center", gap: 14 }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.35 }}
           >
             <div style={{ height: 1, width: 32, background: "oklch(0.97 0 0 / 0.20)" }} />
             <p className="ral" style={{
               fontSize: "0.68rem", letterSpacing: "0.30em",
               color: "oklch(0.97 0 0 / 0.48)", textTransform: "uppercase", fontWeight: 500,
             }}>
-              Dress Code &nbsp;·&nbsp; <span style={{ color: "oklch(0.80 0.09 350 / 0.80)", fontWeight: 600 }}>Elegant Sport</span>
+              Dress Code &nbsp;·&nbsp; <span style={{ color: "oklch(0.80 0.10 215 / 0.80)", fontWeight: 600 }}>Elegant Sport</span>
             </p>
             <div style={{ height: 1, width: 32, background: "oklch(0.97 0 0 / 0.20)" }} />
           </motion.div>
@@ -878,7 +905,7 @@ export default function InvitacionXV() {
           }}>
             <motion.h2
               className="gv"
-              style={{ fontSize: "clamp(3rem, 12vw, 4.5rem)", color: "oklch(0.73 0.10 350)" }}
+              style={{ fontSize: "clamp(3rem, 12vw, 4.5rem)", color: "oklch(0.72 0.13 215)" }}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -916,7 +943,7 @@ export default function InvitacionXV() {
               className="gv"
               style={{
                 fontSize: "clamp(2.2rem, 9vw, 3.2rem)",
-                color: "oklch(0.80 0.09 350)",
+                color: "oklch(0.80 0.10 215)",
                 textAlign: "center", marginBottom: "clamp(32px, 7vw, 56px)",
               }}
               initial={{ opacity: 0, y: 16 }}
@@ -929,6 +956,39 @@ export default function InvitacionXV() {
             <Carrusel />
           </div>
         </section>
+
+        {/* Botón WhatsApp */}
+        <div style={{
+          display: "flex", justifyContent: "center",
+          padding: "clamp(28px, 6vw, 48px) 24px 0",
+          position: "relative", zIndex: 10,
+        }}>
+          <motion.a
+            href={`https://wa.me/${WA_NUMERO}?text=${WA_MENSAJE}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.04, boxShadow: "0 8px 32px oklch(0.72 0.13 215 / 0.50)" }}
+            whileTap={{ scale: 0.96 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            style={{
+              display: "flex", alignItems: "center", gap: 12,
+              padding: "16px 36px", borderRadius: 99,
+              background: "linear-gradient(135deg, oklch(0.68 0.13 245), oklch(0.72 0.13 215))",
+              boxShadow: "0 4px 24px oklch(0.72 0.13 215 / 0.30)",
+              textDecoration: "none", color: "white",
+              fontFamily: "Raleway, sans-serif", fontWeight: 700,
+              fontSize: "clamp(0.82rem, 3vw, 0.95rem)",
+              letterSpacing: "0.08em", textTransform: "uppercase",
+              border: "1px solid oklch(0.80 0.10 215 / 0.35)",
+            }}
+          >
+            <ButterflyIcon size={20} />
+            Confirmar asistencia
+          </motion.a>
+        </div>
 
         {/* transición suave */}
         <FadeDown from={BG} to={BG} />
@@ -976,7 +1036,7 @@ export default function InvitacionXV() {
                 textTransform: "uppercase",
               }}>
                 ¿Qué canción no puede faltar en la{" "}
-                <span style={{ color: "oklch(0.73 0.10 350)" }}>PLAYLIST</span>?
+                <span style={{ color: "oklch(0.72 0.13 215)" }}>PLAYLIST</span>?
               </p>
               <a
                 href={PLAYLIST_URL}
@@ -1017,7 +1077,7 @@ export default function InvitacionXV() {
                 textTransform: "uppercase",
               }}>
                 ¡El mejor regalo es tu{" "}
-                <span style={{ color: "oklch(0.73 0.10 350)" }}>PRESENCIA</span>!
+                <span style={{ color: "oklch(0.72 0.13 215)" }}>PRESENCIA</span>!
               </p>
               <p className="ral" style={{
                 fontSize: "clamp(0.74rem, 2.8vw, 0.82rem)",
