@@ -14,7 +14,7 @@ const LUGAR        = "SOUTH BEACH (ex Sotavento)";
 const DIRECCION    = "Av. 2 y Pinolandia";
 const HORA         = "21:00 hs";
 const ALIAS        = "MILUFEST"; // Cambiá esto
-const PLAYLIST_URL = "#";          // Reemplazá con Spotify / Google Form
+const PLAYLIST_URL = "https://open.spotify.com/playlist/2voVDfGodF4bG7DaDtXRBT?si=4ogp38e9TL-Dl3CchLYorA";
 const AUDIO_SRC    = "/Ariana Grande - One Last Time.mp3";
 const WA_NUMERO    = "5492262622237"; // Cambiá por el número real
 const WA_MENSAJE   = encodeURIComponent("¡Hola! Confirmo mi asistencia a los XV de Milena 🦋");
