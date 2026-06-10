@@ -685,11 +685,12 @@ export default function InvitacionXV() {
             S1 · HERO
         ══════════════════════════════════════ */}
         <section style={{
-          position: "relative", minHeight: "100svh",
+          position: "relative",
+          height: "100svh", maxHeight: "100svh",
           display: "flex", flexDirection: "column",
           alignItems: "center", justifyContent: "center",
-          gap: "clamp(20px, 5svh, 44px)",
-          padding: "clamp(40px, 8vw, 72px) 24px clamp(36px, 6vw, 56px)",
+          gap: "clamp(16px, 4svh, 40px)",
+          padding: "clamp(32px, 6vw, 56px) 24px",
           overflow: "hidden",
         }}>
           <FondoMariposas />
@@ -765,10 +766,9 @@ export default function InvitacionXV() {
         ══════════════════════════════════════ */}
         <section style={{
           position: "relative",
-          minHeight: "100svh",
           display: "flex", flexDirection: "column",
           alignItems: "center", justifyContent: "center",
-          padding: "clamp(60px, 12vw, 100px) clamp(28px, 8vw, 64px)",
+          padding: "clamp(72px, 14vw, 120px) clamp(28px, 8vw, 64px)",
           gap: "clamp(48px, 10vw, 80px)",
           overflow: "hidden",
         }}>
