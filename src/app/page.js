@@ -10,7 +10,7 @@ const MES          = "agosto";
 const DIA_SEM      = "SÁBADO";
 const ANIO         = "2026";
 const MENSAJE      = "Porque esta noche es muy importante para mí, quiero compartirla con las personas que llevo en el corazón. Porque sos una de ellas, quisiera que estés presente en una de las noches más inolvidables de mi vida.";
-const LUGAR        = "SOUTH (ex Sotavento)";
+const LUGAR        = "SOUTH BEACH (ex Sotavento)";
 const DIRECCION    = "Av. 2 y Pinolandia";
 const HORA         = "21:00 hs";
 const ALIAS        = "MILUFEST"; // Cambiá esto
@@ -1000,6 +1000,13 @@ export default function InvitacionXV() {
             <ButterflyIcon size={20} />
             Confirmar asistencia
           </motion.a>
+          <p className="ral" style={{
+            fontSize: "0.65rem", letterSpacing: "0.16em",
+            color: "oklch(0.97 0 0 / 0.38)", textTransform: "uppercase",
+            marginTop: 12, textAlign: "center",
+          }}>
+            Confirmá antes del <span style={{ color: "oklch(0.80 0.10 215 / 0.75)", fontWeight: 600 }}>30 de julio</span>
+          </p>
         </div>
 
         {/* transición suave */}
