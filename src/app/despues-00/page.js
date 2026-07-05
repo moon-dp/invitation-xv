@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 
 const NOMBRE       = "Milena";
-const FECHA_EVENTO = new Date("2026-08-22T20:00:00");
+const FECHA_EVENTO = new Date("2026-08-23T00:00:00");
 const DIA_NUM      = "22";
 const MES          = "agosto";
 const DIA_SEM      = "SÁBADO";
@@ -12,8 +12,8 @@ const ANIO         = "2026";
 const MENSAJE      = "Porque esta noche es muy importante para mí, quiero compartirla con las personas que llevo en el corazón. Porque sos una de ellas, quisiera que estés presente en una de las noches más inolvidables de mi vida.";
 const LUGAR        = "SOUTH CLUB (ex Sotavento)";
 const DIRECCION    = "Av. 2 y Pinolandia";
-const HORA         = "21:00 hs";
-const ALIAS        = "MILU.FEST"; 
+const HORA         = "Después de las 00:00";
+const ALIAS        = "MILU.FEST";
 const PLAYLIST_URL = "https://open.spotify.com/playlist/2voVDfGodF4bG7DaDtXRBT?si=4ogp38e9TL-Dl3CchLYorA";
 const AUDIO_SRC    = "/Bad Bunny - DtMF.mp3";
 const WA_NUMERO    = "5492262622237";
