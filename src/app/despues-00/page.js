@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import PlaylistInput from "@/components/PlaylistInput";
 
 
 const NOMBRE       = "Milena";
@@ -14,7 +15,6 @@ const LUGAR        = "SOUTH CLUB (ex Sotavento)";
 const DIRECCION    = "Av. 2 y Pinolandia";
 const HORA         = "Después de las 00:00";
 const ALIAS        = "MILU.FEST";
-const PLAYLIST_URL = "https://open.spotify.com/playlist/2voVDfGodF4bG7DaDtXRBT?si=4ogp38e9TL-Dl3CchLYorA";
 const AUDIO_SRC    = "/Bad Bunny - DtMF.mp3";
 const WA_NUMERO    = "5492262622237";
 const WA_MENSAJE   = encodeURIComponent("¡Hola! Confirmo mi asistencia a los XV de Milena 🦋");
@@ -1056,22 +1056,7 @@ export default function InvitacionXV() {
                 ¿Qué canción no puede faltar en la{" "}
                 <span style={{ color: "oklch(0.72 0.13 215)" }}>PLAYLIST</span>?
               </p>
-              <a
-                href={PLAYLIST_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ral"
-                style={{
-                  fontSize: "0.8rem", color: "oklch(0.97 0 0 / 0.82)",
-                  border: "1px solid oklch(0.97 0 0 / 0.30)",
-                  borderRadius: 99, padding: "10px 28px",
-                  textDecoration: "none", fontWeight: 500,
-                  transition: "background 0.2s",
-                  display: "inline-block",
-                }}
-              >
-                Elegí tu tema
-              </a>
+              <PlaylistInput />
             </motion.div>
 
             {/* Card presencia */}
